@@ -22,16 +22,20 @@ const safeCurrentLocale = valid.includes(currentLocale) ? (currentLocale as Loca
 // 循环切换目标：zh → en → ja → zh
 const targetLocale = order[(order.indexOf(safeCurrentLocale) + 1) % order.length]
 
-// 获取当前页面路径（剥离当前语言前缀）
+// 当前页面路径：先剥离子路径 base（如 /Yuu），得到 base 相对路径
+const baseURL = import.meta.env.BASE_URL.replace(/\/$/, '') // '/Yuu'
 const currentPath = Astro.url.pathname
-let pagePath = currentPath
+let pagePath = currentPath.startsWith(baseURL)
+  ? currentPath.slice(baseURL.length) || '/'
+  : currentPath
 
+// 再剥离当前语言前缀（/en、/ja）
 for (const loc of ['en', 'ja']) {
   if (safeCurrentLocale === loc) {
-    if (currentPath === `/${loc}`) {
+    if (pagePath === `/${loc}`) {
       pagePath = '/'
-    } else if (currentPath.startsWith(`/${loc}/`)) {
-      pagePath = currentPath.slice(loc.length + 1) || '/'
+    } else if (pagePath.startsWith(`/${loc}/`)) {
+      pagePath = pagePath.slice(loc.length + 1) || '/'
     }
   }
 }
@@ -44,6 +48,9 @@ let targetUrl = getRelativeLocaleUrl(targetLocale, pagePath)
 if (targetUrl !== '/' && targetUrl.endsWith('/')) {
   targetUrl = targetUrl.slice(0, -1)
 }
+
+// 目标语言首页（当目标页面不存在翻译时的回退地址）
+const fallbackUrl = getRelativeLocaleUrl(targetLocale, '/').replace(/\/$/, '') || '/'
 ---
 
 <button
@@ -51,6 +58,7 @@ if (targetUrl !== '/' && targetUrl.endsWith('/')) {
   class="box-content rounded-md border p-1.5 transition-colors hover:bg-border md:group-[.not-top]:rounded-xl"
   title={`切换到${languages[targetLocale]}`}
   data-target-url={targetUrl}
+  data-fallback-url={fallbackUrl}
 >
   <span class="sr-only">{`切换到${languages[targetLocale]}`}</span>
   <div class="flex items-center gap-1">
@@ -64,9 +72,15 @@ if (targetUrl !== '/' && targetUrl.endsWith('/')) {
     const switchBtn = document.getElementById('language-switch-btn') as HTMLButtonElement
 
     if (switchBtn) {
-      switchBtn.addEventListener('click', () => {
+      switchBtn.addEventListener('click', async () => {
         const targetUrl = switchBtn.dataset.targetUrl
-        if (targetUrl) {
+        const fallbackUrl = switchBtn.dataset.fallbackUrl
+        if (!targetUrl) return
+        try {
+          // 目标页面若无对应翻译（404），回退到目标语言首页
+          const res = await fetch(targetUrl, { method: 'HEAD' })
+          window.location.href = res.ok ? targetUrl : fallbackUrl || '/'
+        } catch {
           window.location.href = targetUrl
         }
       })
