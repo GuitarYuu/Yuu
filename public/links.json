@@ -1,0 +1,16 @@
+{
+  "friends": [
+    {
+      "id_name": "书友",
+      "desc": "常一起待在图书馆的朋友们",
+      "link_list": [
+        {
+          "name": "蓝鸟杂记",
+          "link": "https://example.com",
+          "avatar": "https://example.com/avatar.png",
+          "intro": "书店常客的读书笔记（示例）"
+        }
+      ]
+    }
+  ]
+}
