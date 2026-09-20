@@ -42,21 +42,21 @@ import config from '@/site-config'
 
     <div id='content' class='animate flex flex-col gap-y-10 md:w-4/5 lg:w-5/6'>
       <Section title='About'>
-        <p class='text-muted-foreground'>远见东学园二年级，学生会的一员。放学后常泡在图书馆读少女小说，也开始试着把自己的故事写下来。<br/>「想要努力喜欢上——从身边的一切开始。」
+        <p class='text-muted-foreground'>遠見東学園の2年生、生徒会の一員。放課後は図書館で少女小説を読むのが日課。少しずつ、自分の物語も書き始めてみています。<br/>「好きになろうと、努力してみる」——今日もその練習から。
         </p>
-        <Button title='More about me' class='w-fit self-end' href='/Yuu/about' style='ahead' />
+        <Button title='詳しくはこちら' class='w-fit self-end' href='/Yuu/ja/about' style='ahead' />
       </Section>
-      <Section title='Education'>
+      <Section title='所属'>
         <Card
           as='a'
-          heading='远见东学园'
-          subheading='普通科 · 学生会'
-          date='二年级 · 在读中'
+          heading='遠見東学園'
+          subheading='普通科・生徒会'
+          date='2年・在学中'
           href='#'
         >
         </Card>
       </Section>
-      <Section title='Statistics'>
+      <Section title='統計'>
         <BlogStats blogStartDate={config.personal?.blogStartDate ? new Date(config.personal.blogStartDate) : new Date('2024-06-15')} />
       </Section>
     </div>
