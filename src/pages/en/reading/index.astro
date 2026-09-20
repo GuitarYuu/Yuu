@@ -1,0 +1,94 @@
+---
+import PageLayout from '@/layouts/CommonPage.astro'
+import { SimpleIcon, PublicationSection } from '@/components/user'
+
+const headings = [
+  { depth: 2, slug: 'about-reading', text: 'About Reading' },
+  { depth: 2, slug: 'bookshelf', text: 'Bookshelf · This Year' },
+  { depth: 2, slug: 'wishlist', text: 'Wishlist' }
+]
+---
+
+<PageLayout title='Reading' {headings} info={{ slug: '/en/reading', hideComment: true }}>
+  <h2 id='about-reading'>About Reading<a class='anchor' href='#about-reading'>#</a></h2>
+  <p>
+    The window seat of the library after school is my fixed spot. The sound of turning pages feels calmer than anywhere lively — especially when it starts raining outside.
+  </p>
+  <p>Rather than "reading a lot", I want every carefully finished book to become a part of me.</p>
+
+  <h2 id='bookshelf'>Bookshelf · This Year<a class='anchor' href='#bookshelf'>#</a></h2>
+  <PublicationSection
+    publications={[
+      {
+        title: 'April, and a Continuation of Rain',
+        authors: [{ name: 'Shoujo novel · paperback' }],
+        venue: 'Library loan',
+        year: '2026',
+        links: [{ type: 'read', href: '#' }],
+        status: 'published',
+        type: 'journal',
+        abstract: 'The smell of rain begins as suddenly as a confession. That night I dreamed of a blue bird.'
+      },
+      {
+        title: 'Night Notes of the Student Council',
+        authors: [{ name: 'Essay collection' }],
+        venue: 'Found at the bookstore',
+        year: '2026',
+        links: [{ type: 'read', href: '#' }],
+        status: 'published',
+        type: 'journal',
+        abstract: 'People who carefully record everyday life are secretly gentle.'
+      },
+      {
+        title: 'To the Feelings I Could Not Name',
+        authors: [{ name: 'Short story collection' }],
+        venue: 'Bunkobon',
+        year: '2025',
+        links: [{ type: 'read', href: '#' }],
+        status: 'published',
+        type: 'journal',
+        abstract: 'Some feelings have no name, but they surely have a shape.'
+      }
+    ]}
+  />
+
+  <h2 id='wishlist'>Wishlist<a class='anchor' href='#wishlist'>#</a></h2>
+  <div class='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+    {
+      [
+        {
+          title: 'Pudding, Four in the Afternoon',
+          description: 'They say the ending is gentle. Only one copy left at the bookstore.',
+          icon: 'anilist'
+        },
+        {
+          title: 'Please Do Not Read Before the Rain Stops',
+          description: 'Such a strange title — which makes me want to read it more.',
+          icon: 'bookstack'
+        },
+        {
+          title: 'Deep in the Library',
+          description: 'A Japanese original recommended by a senpai. Vocabulary first.',
+          icon: 'wikipedia'
+        }
+      ].map((wish) => (
+        <div class='group relative overflow-hidden rounded-xl border border-border bg-card p-4 transition-all hover:border-foreground/25 hover:shadow-md'>
+          <div class='flex items-start gap-4'>
+            <div class='flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20'>
+              <SimpleIcon
+                class='size-5 text-primary transition-transform duration-300 group-hover:scale-110'
+                name={wish.icon}
+              />
+            </div>
+            <div class='flex-1'>
+              <p class='text-xl font-medium leading-tight text-foreground transition-colors group-hover:text-primary'>
+                {wish.title}
+              </p>
+              <p class='text-sm leading-relaxed text-muted-foreground'>{wish.description}</p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</PageLayout>

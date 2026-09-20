@@ -1,0 +1,42 @@
+---
+import PageLayout from '@/layouts/CommonPage.astro'
+import ProjectSection from '@/components/projects/ProjectSection.astro'
+
+const headings = [
+  { depth: 2, slug: 'works', text: '作品' },
+  { depth: 2, slug: 'notes', text: '創作ノート' }
+]
+---
+
+<PageLayout title='Works' {headings} info={{ slug: '/ja/works', hideComment: true }}>
+  <p class='mb-8 text-muted-foreground'>
+    いろんな人の物語を読んでくるうちに、自分でも一つ、書いてみたくなりました。以下はまだ途中のものばかり——でも、「途中」でもいいんです。
+  </p>
+
+  <h2 id='works' class='mb-8 text-2xl font-semibold'>作品</h2>
+  <ProjectSection
+    project={[
+      {
+        name: '『恋文の写し方』',
+        description: '短編集。雨と、図書室と、出せなかった手紙をテーマにした三作の連作。進捗：二作目の推敲中。',
+        image: 'lumina.webp',
+        links: [{ type: 'site', href: '#' }]
+      },
+      {
+        name: '生徒会日誌（連載中）',
+        description: '例会のたびのどうでもいいことを、少しだけフィクション混じりの日記に。当事者が怒らないことを祈ります。',
+        image: 'byddl.webp',
+        links: [{ type: 'site', href: '#' }]
+      },
+      {
+        name: 'Blue Bird',
+        description: 'タイトル未定の長編の冒頭。歌えない鳥と、その唯一の友達の話。',
+        image: 'lumina.webp',
+        links: [{ type: 'site', href: '#' }]
+      }
+    ]}
+  />
+
+  <h2 id='notes' class='mt-10 text-2xl font-semibold'>創作ノート<a class='anchor' href='#notes'>#</a></h2>
+  <p>書いていると時間を忘れます。最初の一篇が本当に完成したら、まずブログに置きます。</p>
+</PageLayout>

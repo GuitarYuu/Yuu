@@ -1,0 +1,88 @@
+---
+import PageLayout from '@/layouts/CommonPage.astro'
+import { SimpleIcon, PublicationSection } from '@/components/user'
+
+const headings = [
+  { depth: 2, slug: 'about-reading', text: '読書について' },
+  { depth: 2, slug: 'bookshelf', text: '今年の本棚' },
+  { depth: 2, slug: 'wishlist', text: '積読リスト' }
+]
+---
+
+<PageLayout title='Reading' {headings} info={{ slug: '/ja/reading', hideComment: true }}>
+  <h2 id='about-reading'>読書について<a class='anchor' href='#about-reading'>#</a></h2>
+  <p>
+    放課後の図書館の窓際の席は、わたしの定位置です。にぎやかな場所より、ページをめくる音のほうが安心します——特に、窓の外が雨ふぶきになりかけるとき。
+  </p>
+  <p>「たくさん読む」より、ちゃんと読み終えた一冊一冊を、自分の一部にしていきたいです。</p>
+
+  <h2 id='bookshelf'>今年の本棚<a class='anchor' href='#bookshelf'>#</a></h2>
+  <PublicationSection
+    publications={[
+      {
+        title: '『四月、雨の続きを書く』',
+        authors: [{ name: '少女小説・単行本' }],
+        venue: '図書館で借りました',
+        year: '2026',
+        links: [{ type: 'read', href: '#' }],
+        status: 'published',
+        type: 'journal',
+        abstract: '雨の匂いは、告白と同じで急に始まる。読み終えた夜、青い鳥の夢を見ました。'
+      },
+      {
+        title: '『生徒会夜記』',
+        authors: [{ name: 'エッセイ集' }],
+        venue: 'バイト先の書店で',
+        year: '2026',
+        links: [{ type: 'read', href: '#' }],
+        status: 'published',
+        type: 'journal',
+        abstract: '日常をちゃんと記録している人は、みんなこっそり優しいんだと気づいた一冊。'
+      },
+      {
+        title: '『名前のつけられない気持ちへ』',
+        authors: [{ name: '短編集' }],
+        venue: '文庫本',
+        year: '2025',
+        links: [{ type: 'read', href: '#' }],
+        status: 'published',
+        type: 'journal',
+        abstract: '名前のない気持ちにも、きっと形がある。'
+      }
+    ]}
+  />
+
+  <h2 id='wishlist'>積読リスト<a class='anchor' href='#wishlist'>#</a></h2>
+  <div class='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+    {
+      [
+        {
+          title: 'プリンと午後四時',
+          description: '結末が優しいらしい。書店に最後の1冊しかなかった。迷ったら負け。'
+        },
+        {
+          title: '『雨が止むまで読まないで』',
+          description: 'タイトルが変すぎて、かえって読みたくなった。'
+        },
+        {
+          title: '図書室の奥深く',
+          description: '先輩のおすすめの日本語の原書。まずは単語の暗記から。'
+        }
+      ].map((wish) => (
+        <div class='group relative overflow-hidden rounded-xl border border-border bg-card p-4 transition-all hover:border-foreground/25 hover:shadow-md'>
+          <div class='flex items-start gap-4'>
+            <div class='flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20'>
+              <span class='text-lg'>📕</span>
+            </div>
+            <div class='flex-1'>
+              <p class='text-xl font-medium leading-tight text-foreground transition-colors group-hover:text-primary'>
+                {wish.title}
+              </p>
+              <p class='text-sm leading-relaxed text-muted-foreground'>{wish.description}</p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</PageLayout>

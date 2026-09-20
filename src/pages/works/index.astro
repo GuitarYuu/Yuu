@@ -1,0 +1,42 @@
+---
+import PageLayout from '@/layouts/CommonPage.astro'
+import ProjectSection from '@/components/projects/ProjectSection.astro'
+
+const headings = [
+  { depth: 2, slug: 'works', text: 'Works' },
+  { depth: 2, slug: 'notes', text: '创作笔记' }
+]
+---
+
+<PageLayout title='Works' {headings} info={{ slug: '/works', hideComment: true }}>
+  <p class='mb-8 text-muted-foreground'>
+    读了很多别人的故事之后，也想试着写一点自己的。以下都还是未完成的东西——不过，「未完成」也没关系。
+  </p>
+
+  <h2 id='works' class='mb-8 text-2xl font-semibold'>Works</h2>
+  <ProjectSection
+    project={[
+      {
+        name: '《恋文的写法》',
+        description: '短篇集。以雨、图书馆和没有寄出去的信为题目的三篇连作。进度：第二篇改稿中。',
+        image: 'lumina.webp',
+        links: [{ type: 'site', href: '#' }]
+      },
+      {
+        name: '学生会日志（连载中）',
+        description: '把每次例会的琐事写成了带一点虚构的日记。当事人看了也许会生气，所以它是虚构的。',
+        image: 'byddl.webp',
+        links: [{ type: 'site', href: '#' }]
+      },
+      {
+        name: 'Blue Bird',
+        description: '还没想好名字的长篇开头。关于一只不会唱歌的鸟，和它唯一的朋友。',
+        image: 'lumina.webp',
+        links: [{ type: 'site', href: '#' }]
+      }
+    ]}
+  />
+
+  <h2 id='notes' class='mt-10 text-2xl font-semibold'>创作笔记<a class='anchor' href='#notes'>#</a></h2>
+  <p>写作的时候总是会忘记时间。等第一篇真正完成，会先放在博客里。</p>
+</PageLayout>

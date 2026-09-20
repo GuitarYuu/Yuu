@@ -4,7 +4,7 @@ layout: '@/layouts/IndividualPage.astro'
 title: 'Copyright'
 description: 'Effective date: 2030-12-31'
 language: 'En'
-back: '/terms/list'
+back: '/Yuu/terms/list'
 ---
 
 <h2 style="text-align: center;"><b>COPYRIGHT NOTICE</b></h2>

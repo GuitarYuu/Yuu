@@ -1,0 +1,29 @@
+---
+import PageLayout from '@/layouts/CommonPage.astro'
+import { Spoiler } from '@/components/user'
+import { Comment } from '@/components/advanced'
+
+const headings = [
+  { depth: 2, slug: 'intro', text: '自己紹介' },
+  { depth: 2, slug: 'favorites', text: '好きなもの' },
+  { depth: 2, slug: 'site', text: 'このサイトについて' }
+]
+---
+
+<PageLayout title='About' {headings} info='/ja/about'>
+  <h2 id='intro'>自己紹介<a class='anchor' href='#intro'>#</a></h2>
+  <p>侑です。遠見東学園の2年生で、生徒会にも所属しています。放課後は図書館か、アルバイト先の書店にいることが多いです。</p>
+  <p>特技は、図書館で丸一日過ごせること。最近覚えたのは、借りた本に「好き度」の順位をつけること。<Spoiler>実は物語を書いているときが、いちばん夢中だったりします。</Spoiler></p>
+
+  <h2 id='favorites'>好きなもの<a class='anchor' href='#favorites'>#</a></h2>
+  <ul>
+    <li>雨の音、図書室の木の机、プリン（焦げた部分が特に）</li>
+    <li>少女小説と、「次の物語」の構想</li>
+    <li>夕方の書店と、閉店前に来てくれるお客さん</li>
+  </ul>
+
+  <h2 id='site'>このサイトについて<a class='anchor' href='#site'>#</a></h2>
+  <p>読んだ本の記録や、書きかけの物語、学園の日常を置いておく場所です。</p>
+  <p>ここにある内容はすべてフィクションです。サイトの色は粉と青と白——名前のない感情にも、形はあるのだと教えてくれた作品への、ちょっとしたオマージュです。</p>
+  <Comment slot='bottom' />
+</PageLayout>

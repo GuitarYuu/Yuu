@@ -1,0 +1,95 @@
+---
+import PageLayout from '@/layouts/CommonPage.astro'
+import { SimpleIcon } from '@/components/user'
+import { PublicationSection } from '@/components/user'
+
+const headings = [
+  { depth: 2, slug: 'about-reading', text: '关于阅读' },
+  { depth: 2, slug: 'bookshelf', text: '书架 · 今年的记录' },
+  { depth: 2, slug: 'wishlist', text: '想读清单' }
+]
+---
+
+<PageLayout title='Reading' {headings} info={{ slug: '/reading', hideComment: true }}>
+  <h2 id='about-reading'>关于阅读<a class='anchor' href='#about-reading'>#</a></h2>
+  <p>
+    放学后的图书馆靠窗的位置，是我的固定座位。比起热闹的地方，还是书页翻动的声音更让人安心——尤其是窗外开始下雨的时候。
+  </p>
+  <p>比起「读了很多」，我更想把每一本认真读完的书，都变成自己的一部分。</p>
+
+  <h2 id='bookshelf'>书架 · 今年的记录<a class='anchor' href='#bookshelf'>#</a></h2>
+  <PublicationSection
+    publications={[
+      {
+        title: '《四月，与一场雨的续写》',
+        authors: [{ name: '少女小说 · 单行本' }],
+        venue: '图书馆借阅',
+        year: '2026',
+        links: [{ type: 'read', href: '#' }],
+        status: 'published',
+        type: 'journal',
+        abstract: '雨的气味和告白一样，都是突然开始的。读完的那晚，我梦见了蓝色的鸟。'
+      },
+      {
+        title: '《学生会夜记》',
+        authors: [{ name: '随笔集' }],
+        venue: '打工书店偶遇',
+        year: '2026',
+        links: [{ type: 'read', href: '#' }],
+        status: 'published',
+        type: 'journal',
+        abstract: '原来认真记录日常的人，都在偷偷地温柔。'
+      },
+      {
+        title: '《写给无法命名的感情》',
+        authors: [{ name: '短篇合集' }],
+        venue: '文库本',
+        year: '2025',
+        links: [{ type: 'read', href: '#' }],
+        status: 'published',
+        type: 'journal',
+        abstract: '有些心情没有名字，但一定有形状。'
+      }
+    ]}
+  />
+
+  <h2 id='wishlist'>想读清单<a class='anchor' href='#wishlist'>#</a></h2>
+  <div class='grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3'>
+    {
+      [
+        {
+          title: '布丁与下午四点',
+          description: '据说结尾很温柔。书店只剩最后一本，犹豫就会败北。',
+          icon: 'anilist'
+        },
+        {
+          title: '《雨停之前请不要读》',
+          description: '书名太奇怪了，反而更想读。',
+          icon: 'bookstack'
+        },
+        {
+          title: '図書室の深处',
+          description: '学姐推荐的日文原版，得先把单词背完。',
+          icon: 'wikipedia'
+        }
+      ].map((wish) => (
+        <div class='group relative overflow-hidden rounded-xl border border-border bg-card p-4 transition-all hover:border-foreground/25 hover:shadow-md'>
+          <div class='flex items-start gap-4'>
+            <div class='flex size-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20'>
+              <SimpleIcon
+                class='size-5 text-primary transition-transform duration-300 group-hover:scale-110'
+                name={wish.icon}
+              />
+            </div>
+            <div class='flex-1'>
+              <p class='text-xl font-medium leading-tight text-foreground transition-colors group-hover:text-primary'>
+                {wish.title}
+              </p>
+              <p class='text-sm leading-relaxed text-muted-foreground'>{wish.description}</p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</PageLayout>

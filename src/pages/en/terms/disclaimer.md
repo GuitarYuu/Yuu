@@ -4,7 +4,7 @@ layout: '@/layouts/IndividualPage.astro'
 title: 'Disclaimer'
 description: 'Effective date: 2030-12-31'
 language: 'En'
-back: '/terms/list'
+back: '/Yuu/terms/list'
 ---
 
 <h2 style="text-align: center;"><b>DISCLAIMER</b></h2>	 	 

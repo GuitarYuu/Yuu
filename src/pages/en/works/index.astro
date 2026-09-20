@@ -1,0 +1,42 @@
+---
+import PageLayout from '@/layouts/CommonPage.astro'
+import ProjectSection from '@/components/projects/ProjectSection.astro'
+
+const headings = [
+  { depth: 2, slug: 'works', text: 'Works' },
+  { depth: 2, slug: 'notes', text: 'Notes' }
+]
+---
+
+<PageLayout title='Works' {headings} info={{ slug: '/en/works', hideComment: true }}>
+  <p class='mb-8 text-muted-foreground'>
+    After reading so many other people's stories, I want to try writing one of my own. Everything below is unfinished — but that is perfectly fine.
+  </p>
+
+  <h2 id='works' class='mb-8 text-2xl font-semibold'>Works</h2>
+  <ProjectSection
+    project={[
+      {
+        name: 'How to Write a Love Letter',
+        description: 'A short story collection. Three linked pieces about rain, the library, and letters never sent. Progress: redrafting the second.',
+        image: 'lumina.webp',
+        links: [{ type: 'site', href: '#' }]
+      },
+      {
+        name: 'Student Council Nights (serial)',
+        description: 'Council meeting trivia rewritten as slightly fictional diary entries. Purely fictional — please do not sue.',
+        image: 'byddl.webp',
+        links: [{ type: 'site', href: '#' }]
+      },
+      {
+        name: 'Blue Bird',
+        description: 'The opening of an untitled novel. About a bird that cannot sing, and its only friend.',
+        image: 'lumina.webp',
+        links: [{ type: 'site', href: '#' }]
+      }
+    ]}
+  />
+
+  <h2 id='notes' class='mt-10 text-2xl font-semibold'>Notes<a class='anchor' href='#notes'>#</a></h2>
+  <p>Writing makes me lose track of time. When the first piece is truly finished, it will appear on the blog first.</p>
+</PageLayout>
